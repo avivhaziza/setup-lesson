@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>התקנת סביבת עבודה מלאה</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0f1117;
+  --bg2:#161822;
+  --surface:#1c1f2e;
+  --surface2:#242738;
+  --border:#2e3247;
+  --border-light:#3a3f5a;
+  --text:#e2e4ed;
+  --text-secondary:#9da2b9;
+  --muted:#6b7094;
+  --accent:#818cf8;
+  --accent2:#a78bfa;
+  --accent3:#c084fc;
+  --green:#34d399;
+  --green-dim:#065f46;
+  --green-surface:#0d2818;
+  --blue:#60a5fa;
+  --blue-surface:#172554;
+  --orange:#fbbf24;
+  --orange-surface:#422006;
+  --red:#f87171;
+  --red-surface:#2a0a0a;
+  --pink:#f472b6;
+  --teal:#2dd4bf;
+  --radius:14px;
+  --radius-sm:10px;
+  --shadow:0 2px 12px rgba(0,0,0,.3);
+  --shadow-lg:0 8px 30px rgba(0,0,0,.4);
+}
+body{
+  font-family:"Segoe UI","SF Pro Display",-apple-system,BlinkMacSystemFont,Roboto,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.75;font-size:16px;
+  min-height:100vh;
+}
+.page-wrapper{max-width:820px;margin:0 auto;padding:0 20px 60px}
+
+/* ── Hero ── */
+.hero{
+  background:linear-gradient(135deg,#1e1b4b 0%,#312e81 40%,#4c1d95 100%);
+  padding:50px 0 60px;margin-bottom:40px;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;top:-40%;right:-15%;width:500px;height:500px;
+  background:radial-gradient(circle,rgba(129,140,248,.15) 0%,transparent 70%);border-radius:50%;
+}
+.hero::after{
+  content:"";position:absolute;bottom:-30%;left:-10%;width:400px;height:400px;
+  background:radial-gradient(circle,rgba(192,132,252,.1) 0%,transparent 70%);border-radius:50%;
+}
+.hero-content{max-width:820px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.hero h1{font-size:2.4rem;color:#fff;margin-bottom:8px;font-weight:800;text-shadow:0 2px 20px rgba(0,0,0,.3)}
+.hero .subtitle{color:rgba(255,255,255,.7);font-size:1.1rem;margin-bottom:24px;font-weight:400}
+.hero .goal-list{
+  background:rgba(255,255,255,.07);backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:20px 24px;color:#fff;
+}
+.hero .goal-list .goal-title{font-weight:700;font-size:1.05rem;margin-bottom:10px}
+.hero .goal-list ul{list-style:none;padding:0;margin:0}
+.hero .goal-list li{padding:5px 0;padding-right:28px;position:relative;font-size:.97rem;color:rgba(255,255,255,.85)}
+.hero .goal-list li::before{content:"✓";position:absolute;right:0;top:5px;font-weight:700;font-size:1.1rem;color:#34d399}
+
+/* ── Sections ── */
+.section{
+  background:var(--surface);border-radius:var(--radius);
+  padding:32px 32px 28px;margin-bottom:24px;
+  box-shadow:var(--shadow);border:1px solid var(--border);
+  position:relative;overflow:hidden;
+}
+.section::before{content:"";position:absolute;top:0;right:0;width:100%;height:4px}
+.section-purple::before{background:linear-gradient(90deg,#818cf8,#a78bfa)}
+.section-blue::before{background:linear-gradient(90deg,#60a5fa,#93c5fd)}
+.section-green::before{background:linear-gradient(90deg,#34d399,#6ee7b7)}
+.section-orange::before{background:linear-gradient(90deg,#fbbf24,#fcd34d)}
+.section-pink::before{background:linear-gradient(90deg,#f472b6,#f9a8d4)}
+.section-teal::before{background:linear-gradient(90deg,#2dd4bf,#5eead4)}
+.section-red::before{background:linear-gradient(90deg,#f87171,#fca5a5)}
+.section-indigo::before{background:linear-gradient(90deg,#818cf8,#c084fc)}
+
+.section-header{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.section-icon{
+  width:44px;height:44px;border-radius:12px;display:flex;align-items:center;
+  justify-content:center;font-size:1.4rem;flex-shrink:0;
+}
+.icon-purple{background:rgba(129,140,248,.15);color:#a5b4fc}
+.icon-blue{background:rgba(96,165,250,.15);color:#93c5fd}
+.icon-green{background:rgba(52,211,153,.15);color:#6ee7b7}
+.icon-orange{background:rgba(251,191,36,.15);color:#fcd34d}
+.icon-pink{background:rgba(244,114,182,.15);color:#f9a8d4}
+.icon-teal{background:rgba(45,212,191,.15);color:#5eead4}
+.icon-red{background:rgba(248,113,113,.15);color:#fca5a5}
+.icon-indigo{background:rgba(129,140,248,.15);color:#c4b5fd}
+
+.section-header h2{font-size:1.35rem;color:var(--text);margin:0;border:none;padding:0}
+p{margin-bottom:12px;color:var(--text-secondary)}
+ul,ol{margin:8px 0 14px;padding-right:24px}
+li{margin-bottom:6px;color:var(--text-secondary)}
+li strong{color:var(--text)}
+strong{color:var(--text)}
+
+/* ── TOC ── */
+.toc{
+  background:var(--surface);border-radius:var(--radius);
+  padding:24px 28px;margin-bottom:24px;box-shadow:var(--shadow);border:1px solid var(--border);
+}
+.toc-title{font-weight:700;font-size:1rem;margin-bottom:12px;color:var(--text)}
+.toc-list{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 20px}
+.toc-list li{font-size:.9rem}
+.toc-list a{color:var(--text-secondary);text-decoration:none;padding:4px 0;display:flex;align-items:center;gap:6px;transition:.15s}
+.toc-list a:hover{color:var(--accent)}
+.toc-list .toc-num{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:22px;height:22px;border-radius:6px;background:rgba(129,140,248,.12);
+  color:var(--accent);font-size:.75rem;font-weight:700;flex-shrink:0;
+}
+
+/* ── Module Cards ── */
+.module-card{
+  background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:24px;margin-bottom:16px;position:relative;overflow:hidden;
+  transition:transform .15s,box-shadow .15s;
+}
+.module-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.module-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.module-num{
+  width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:.9rem;flex-shrink:0;color:#fff;
+}
+.module-num-1{background:linear-gradient(135deg,#f97316,#fb923c)}
+.module-num-2{background:linear-gradient(135deg,#22c55e,#4ade80)}
+.module-num-3{background:linear-gradient(135deg,#818cf8,#a78bfa)}
+.module-num-4{background:linear-gradient(135deg,#f472b6,#f9a8d4)}
+.module-num-5{background:linear-gradient(135deg,#60a5fa,#93c5fd)}
+.module-num-6{background:linear-gradient(135deg,#fbbf24,#fcd34d)}
+.module-num-7{background:linear-gradient(135deg,#2dd4bf,#5eead4)}
+.module-title{font-weight:700;font-size:1.1rem;color:var(--text)}
+.module-desc{font-size:.93rem;color:var(--text-secondary);margin-bottom:12px}
+
+/* ── OS Tabs ── */
+.os-tabs{display:flex;gap:6px;margin-bottom:12px}
+.os-tab{
+  padding:6px 16px;border-radius:8px;font-size:.85rem;font-weight:600;
+  cursor:pointer;border:1px solid var(--border);background:var(--surface);
+  color:var(--muted);transition:.15s;
+}
+.os-tab.active{background:rgba(129,140,248,.15);border-color:var(--accent);color:var(--accent)}
+.os-tab:hover:not(.active){background:var(--surface2);color:var(--text-secondary)}
+.os-content{display:none}
+.os-content.active{display:block}
+
+/* ── Command Box ── */
+.cmd-box{
+  position:relative;border-radius:var(--radius-sm);padding:14px 18px;padding-left:70px;
+  margin:10px 0;font-family:"Cascadia Code",Consolas,"Courier New",monospace;
+  font-size:.9rem;line-height:1.6;direction:ltr;text-align:left;
+  background:var(--bg2);border:1px solid var(--border);color:#a5b4fc;
+}
+.cmd-box .cmd-prefix{color:var(--muted);user-select:none}
+.cmd-box .copy-btn{
+  position:absolute;top:50%;left:12px;transform:translateY(-50%);
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border:none;border-radius:8px;padding:5px 12px;font-size:.78rem;
+  cursor:pointer;color:#fff;transition:.2s;font-weight:600;
+  box-shadow:0 2px 8px rgba(129,140,248,.25);
+}
+.cmd-box .copy-btn:hover{transform:translateY(-50%) scale(1.05);box-shadow:0 4px 14px rgba(129,140,248,.35)}
+
+/* ── Verify Box ── */
+.verify-box{
+  background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);
+  border-radius:var(--radius-sm);padding:12px 18px;margin:10px 0;
+  display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:#6ee7b7;
+}
+.verify-box::before{content:"✓";font-weight:700;font-size:1rem;flex-shrink:0;margin-top:1px}
+
+/* ── Note ── */
+.note{
+  background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);
+  border-radius:var(--radius-sm);padding:14px 18px;font-size:.9rem;
+  margin:10px 0;color:#fcd34d;display:flex;align-items:flex-start;gap:10px;
+}
+.note::before{content:"💡";font-size:1rem;flex-shrink:0}
+
+/* ── Info Box ── */
+.info-box{
+  background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.2);
+  border-radius:var(--radius-sm);padding:14px 18px;font-size:.9rem;
+  margin:10px 0;color:#93c5fd;display:flex;align-items:flex-start;gap:10px;
+}
+.info-box::before{content:"ℹ️";font-size:1rem;flex-shrink:0}
+
+/* ── Trouble ── */
+.trouble-item{
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:18px 20px;margin-bottom:12px;
+  box-shadow:var(--shadow);display:flex;gap:14px;align-items:flex-start;
+}
+.trouble-num{
+  flex-shrink:0;width:32px;height:32px;border-radius:8px;
+  background:rgba(251,191,36,.12);color:#fcd34d;
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.85rem;
+}
+.trouble-body{flex:1}
+.trouble-problem{font-weight:700;color:var(--text);margin-bottom:6px;font-size:.95rem}
+.trouble-fix{
+  font-size:.9rem;color:var(--text-secondary);line-height:1.5;
+  background:var(--bg2);border-radius:6px;padding:10px 14px;
+  border-right:3px solid var(--green);
+}
+
+/* ── Checklist ── */
+.checklist{
+  background:linear-gradient(135deg,#064e3b,#065f46);
+  border:1px solid rgba(52,211,153,.2);border-radius:var(--radius);
+  padding:28px 28px 24px;
+}
+.checklist h2{color:#6ee7b7;margin:0 0 16px;font-size:1.3rem}
+.checklist ul{list-style:none;padding:0;margin:0}
+.checklist li{
+  padding:10px 14px;margin-bottom:8px;
+  background:rgba(255,255,255,.06);border-radius:8px;
+  font-size:.95rem;color:#d1fae5;
+  display:flex;align-items:center;gap:10px;
+  border:1px solid rgba(52,211,153,.12);
+}
+.checklist li::before{content:"✅";font-size:.9rem;flex-shrink:0}
+
+/* ── Details ── */
+details{
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:var(--radius-sm);margin:14px 0;box-shadow:var(--shadow);overflow:hidden;
+}
+details summary{
+  padding:14px 20px;cursor:pointer;font-weight:600;color:var(--accent);
+  list-style:none;display:flex;align-items:center;gap:10px;
+  background:rgba(129,140,248,.05);transition:background .2s;
+}
+details summary:hover{background:rgba(129,140,248,.1)}
+details summary::before{content:"◀";font-size:.7rem;transition:transform .2s;color:var(--accent2)}
+details[open] summary::before{transform:rotate(-90deg)}
+details[open] summary{border-bottom:1px solid var(--border)}
+details .details-body{padding:16px 20px}
+
+/* ── Progress Bar ── */
+.progress-bar{position:fixed;top:0;left:0;right:0;height:3px;z-index:999;background:rgba(255,255,255,.05)}
+.progress-fill{height:100%;width:0%;background:linear-gradient(90deg,#818cf8,#a78bfa,#c084fc);transition:width .1s linear}
+
+/* ── Footer ── */
+footer{text-align:center;padding:30px 20px;color:var(--muted);font-size:.85rem}
+footer .footer-line{display:inline-block;padding:8px 20px;background:var(--surface);border-radius:20px;box-shadow:var(--shadow);border:1px solid var(--border)}
+
+/* ── Responsive ── */
+@media(max-width:600px){
+  body{font-size:15px}
+  .hero h1{font-size:1.7rem}
+  .hero{padding:36px 0 44px}
+  .section{padding:24px 20px 22px}
+  .module-card{padding:20px}
+  .toc-list{grid-template-columns:1fr}
+  .checklist{padding:22px 18px}
+}
+</style>
+</head>
+<body>
+
+<div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+<div class="hero-content">
+  <h1>התקנת סביבת עבודה מלאה</h1>
+  <p class="subtitle">שיעור מתוך הקורס &middot; צעד אחר צעד &middot; Windows + Mac</p>
+  <div class="goal-list">
+    <div class="goal-title">&#127919; מה מתקינים היום</div>
+    <ul>
+      <li>Git – מערכת ניהול גרסאות</li>
+      <li>Node.js – סביבת הרצה ל-JavaScript</li>
+      <li>Claude Code CLI – כלי AI מהטרמינל</li>
+      <li>Anti Gravity – סביבת פיתוח חזותית</li>
+      <li>הרצת פרויקט מקומי מלא על המחשב</li>
+    </ul>
+  </div>
+</div>
+</div>
+
+<div class="page-wrapper">
+
+<!-- TOC -->
+<nav class="toc">
+<div class="toc-title">&#128220; תוכן עניינים</div>
+<ol class="toc-list">
+  <li><a href="#m1"><span class="toc-num">1</span>התקנת Git</a></li>
+  <li><a href="#m2"><span class="toc-num">2</span>התקנת Node.js</a></li>
+  <li><a href="#m3"><span class="toc-num">3</span>התקנת Claude Code CLI</a></li>
+  <li><a href="#m4"><span class="toc-num">4</span>Anti Gravity</a></li>
+  <li><a href="#m5"><span class="toc-num">5</span>שכפול פרויקט (Clone)</a></li>
+  <li><a href="#m6"><span class="toc-num">6</span>התקנת תלויות (npm install)</a></li>
+  <li><a href="#m7"><span class="toc-num">7</span>הרצה מקומית</a></li>
+  <li><a href="#s-verify"><span class="toc-num">8</span>בדיקות תקינות</a></li>
+  <li><a href="#s-trouble"><span class="toc-num">9</span>תקלות נפוצות</a></li>
+  <li><a href="#s-done"><span class="toc-num">10</span>מצב בסיום הפרק</a></li>
+</ol>
+</nav>
+
+<!-- ===== MODULE 1 – Git ===== -->
+<div class="section section-orange" id="m1">
+<div class="section-header">
+  <div class="section-icon icon-orange">&#128736;</div>
+  <h2>שלב 1: התקנת Git</h2>
+</div>
+<p>Git היא התוכנה שעוקבת אחרי שינויים בקוד. צריך אותה כדי לשכפל פרויקטים ולעבוד מול GitHub.</p>
+
+<div class="module-card">
+<div class="module-header">
+  <div class="module-num module-num-1">1</div>
+  <div class="module-title">בדיקה אם Git כבר מותקן</div>
+</div>
+<p class="module-desc">פתחו טרמינל (Command Prompt ב-Windows, Terminal ב-Mac) והריצו:</p>
+<div class="cmd-box" id="cmd-git-check">
+<span class="cmd-prefix">$ </span>git --version
+<button class="copy-btn" onclick="copyCmd('cmd-git-check')">&#128203; העתק</button>
+</div>
+<div class="verify-box">אם מופיע מספר גרסה (כמו <code style="color:#a5b4fc;background:rgba(129,140,248,.15);padding:2px 6px;border-radius:4px">git version 2.43.0</code>) – Git מותקן ואפשר לעבור לשלב הבא.</div>
+</div>
+
+<details>
+<summary>&#128229; Git לא מותקן? הנה איך להתקין</summary>
+<div class="details-body">
+
+<div class="os-tabs" data-group="git-install">
+  <div class="os-tab active" onclick="switchTab(this,'win','git-install')">Windows</div>
+  <div class="os-tab" onclick="switchTab(this,'mac','git-install')">Mac</div>
+</div>
+
+<div class="os-content active" data-tab="win" data-group="git-install">
+<ol>
+<li>לכו לאתר <strong>git-scm.com/downloads/win</strong></li>
+<li>הורידו את הקובץ (Standalone Installer – 64-bit)</li>
+<li>הריצו את ההתקנה – לחצו Next בכל שלב (ברירות המחדל מצוינות)</li>
+<li><strong>סגרו ופתחו מחדש</strong> את הטרמינל</li>
+<li>הריצו שוב <code style="color:#a5b4fc;background:rgba(129,140,248,.15);padding:2px 6px;border-radius:4px">git --version</code> לוידוא</li>
+</ol>
+</div>
+
+<div class="os-content" data-tab="mac" data-group="git-install">
+<ol>
+<li>פתחו Terminal</li>
+<li>הריצו <code style="color:#a5b4fc;background:rgba(129,140,248,.15);padding:2px 6px;border-radius:4px">git --version</code></li>
+<li>אם Git לא מותקן, macOS יציע להתקין "Command Line Tools" – לחצו <strong>Install</strong></li>
+<li>חכו שההתקנה תסתיים והריצו שוב לוידוא</li>
+</ol>
+</div>
+
+</div>
+</details>
+</div>
+
+<!-- ===== MODULE 2 – Node.js ===== -->
+<div class="section section-green" id="m2">
+<div class="section-header">
+  <div class="section-icon icon-green">&#9889;</div>
+  <h2>שלב 2: התקנת Node.js</h2>
+</div>
+<p>Node.js היא סביבת הרצה ל-JavaScript. היא נדרשת כדי להריץ פרויקטים מקומית ולהתקין כלים כמו Claude Code.</p>
+
+<div class="module-card">
+<div class="module-header">
+  <div class="module-num module-num-2">2</div>
+  <div class="module-title">התקנת גרסת LTS</div>
+</div>
+
+<div class="info-box">תמיד התקינו את גרסת <strong>LTS</strong> (Long Term Support) – זו הגרסה היציבה והמומלצת.</div>
+
+<div class="os-tabs" data-group="node-install">
+  <div class="os-tab active" onclick="switchTab(this,'win','node-install')">Windows</div>
+  <div class="os-tab" onclick="switchTab(this,'mac','node-install')">Mac</div>
+</div>
+
+<div class="os-content active" data-tab="win" data-group="node-install">
+<ol>
+<li>לכו לאתר <strong>nodejs.org</strong></li>
+<li>לחצו על הכפתור הירוק הגדול עם הכיתוב <strong>LTS</strong></li>
+<li>הריצו את ההתקנה – Next בכל שלב</li>
+<li><strong>סגרו ופתחו מחדש</strong> את הטרמינל</li>
+</ol>
+</div>
+
+<div class="os-content" data-tab="mac" data-group="node-install">
+<ol>
+<li>לכו לאתר <strong>nodejs.org</strong></li>
+<li>הורידו את גרסת <strong>LTS</strong> עבור macOS</li>
+<li>הריצו את קובץ ה-pkg והתקינו</li>
+<li><strong>סגרו ופתחו מחדש</strong> את ה-Terminal</li>
+</ol>
+</div>
+
+</div>
+
+<div class="module-card">
+<div class="module-header">
+  <div class="module-num module-num-2">&#10003;</div>
+  <div class="module-title">בדיקת התקנה</div>
+</div>
+<p class="module-desc">הריצו את שתי הפקודות הבאות:</p>
+<div class="cmd-box" id="cmd-node-v">
+<span class="cmd-prefix">$ </span>node --version
+<button class="copy-btn" onclick="copyCmd('cmd-node-v')">&#128203; העתק</button>
+</div>
+<div class="cmd-box" id="cmd-npm-v">
+<span class="cmd-prefix">$ </span>npm --version
+<button class="copy-btn" onclick="copyCmd('cmd-npm-v')">&#128203; העתק</button>
+</div>
+<div class="verify-box">אם מופיעים שני מספרי גרסה – הכל מותקן כמו שצריך.</div>
+</div>
+</div>
+
+<!-- ===== MODULE 3 – Claude Code CLI ===== -->
+<div class="section section-purple" id="m3">
+<div class="section-header">
+  <div class="section-icon icon-purple">&#129302;</div>
+  <h2>שלב 3: התקנת Claude Code CLI</h2>
+</div>
+<p>Claude Code הוא כלי AI שעובד ישירות מהטרמינל ומאפשר לכם לעבוד עם הקוד בצורה חכמה – לתקן באגים, להוסיף פיצ'רים ולשפר את הפרויקט.</p>
+
+<div class="module-card">
+<div class="module-header">
+  <div class="module-num module-num-3">3</div>
+  <div class="module-title">התקנה באמצעות npm</div>
+</div>
+<p class="module-desc">פתחו טרמינל והריצו:</p>
+<div class="cmd-box" id="cmd-claude-install">
+<span class="cmd-prefix">$ </span>npm install -g @anthropic-ai/claude-code
+<button class="copy-btn" onclick="copyCmd('cmd-claude-install')">&#128203; העתק</button>
+</div>
+<div class="note">ההתקנה עשויה לקחת כדקה. הדגל <code style="color:#fcd34d;background:rgba(251,191,36,.12);padding:2px 6px;border-radius:4px">-g</code> אומר "התקן גלובלית" – כלומר הפקודה תהיה זמינה מכל מקום במחשב.</div>
+</div>
+
+<div class="module-card">
+<div class="module-header">
+  <div class="module-num module-num-3">&#10003;</div>
+  <div class="module-title">בדיקת התקנה</div>
+</div>
+<div class="cmd-box" id="cmd-claude-v">
+<span class="cmd-prefix">$ </span>claude --version
+<button class="copy-btn" onclick="copyCmd('cmd-claude-v')">&#128203; העתק</button>
+</div>
+<div class="verify-box">אם מופיע מספר גרסה – Claude Code מותקן ומוכן לשימוש.</div>
+</div>
+
+<details>
+<summary>&#128272; שגיאת הרשאות (Permission Error)?</summary>
+<div class="details-body">
+
+<div class="os-tabs" data-group="perm-fix">
+  <div class="os-tab active" onclick="switchTab(this,'win','perm-fix')">Windows</div>
+  <div class="os-tab" onclick="switchTab(this,'mac','perm-fix')">Mac</div>
+</div>
+
+<div class="os-content active" data-tab="win" data-group="perm-fix">
+<p>פתחו את ה-Command Prompt (או PowerShell) <strong>כמנהל מערכת</strong> – קליק ימני → "Run as administrator" – ונסו שוב.</p>
+</div>
+
+<div class="os-content" data-tab="mac" data-group="perm-fix">
+<p>הוסיפו <code style="color:#a5b4fc;background:rgba(129,140,248,.15);padding:2px 6px;border-radius:4px">sudo</code> לפני הפקודה:</p>
+<div class="cmd-box" id="cmd-sudo-claude">
+<span class="cmd-prefix">$ </span>sudo npm install -g @anthropic-ai/claude-code
+<button class="copy-btn" onclick="copyCmd('cmd-sudo-claude')">&#128203; העתק</button>
+</div>
+<p>תתבקשו להזין סיסמה – זו סיסמת המחשב שלכם.</p>
+</div>
+
+</div>
+</details>
+</div>
+
+<!-- ===== MODULE 4 – Anti Gravity ===== -->
+<div class="section section-pink" id="m4">
+<div class="section-header">
+  <div class="section-icon icon-pink">&#128640;</div>
+  <h2>שלב 4: Anti Gravity</h2>
+</div>
+<p>Anti Gravity הוא כלי AI שמאפשר לעבוד על הקוד בממשק ויזואלי נוח. הוא עובד ישירות מול ה-Repo שלכם ב-GitHub.</p>
+
+<div class="module-card">
+<div class="module-header">
+  <div class="module-num module-num-4">4</div>
+  <div class="module-title">פתיחת פרויקט</div>
+</div>
+<p class="module-desc">Anti Gravity עובד כשירות ענן – אין צורך בהתקנה מקומית. פשוט:</p>
+<ol>
+<li>היכנסו לממשק Anti Gravity</li>
+<li>חברו את חשבון ה-GitHub שלכם (אם עדיין לא חיברתם)</li>
+<li>בחרו את ה-Repo של הפרויקט</li>
+<li>פתחו את תיקיית הפרויקט וה-AI יהיה מוכן לעבוד</li>
+</ol>
+<div class="info-box">Anti Gravity מזהה אוטומטית את מבנה הפרויקט ומאפשר לכם לתת הנחיות בשפה טבעית.</div>
+</div>
+</div>
+
+<!-- ===== MODULE 5 – Clone ===== -->
+<div class="section section-blue" id="m5">
+<div class="section-header">
+  <div class="section-icon icon-blue">&#128230;</div>
+  <h2>שלב 5: שכפול פרויקט (Clone)</h2>
+</div>
+<p>כדי לעבוד על פרויקט מקומית, צריך קודם להוריד אותו מ-GitHub למחשב. לפעולה הזו קוראים <strong>Clone</strong>.</p>
+
+<div class="module-card">
+<div class="module-header">
+  <div class="module-num module-num-5">5</div>
+  <div class="module-title">שכפול ה-Repo</div>
+</div>
+<p class="module-desc">נווטו לתיקייה שבה אתם רוצים לשמור את הפרויקט, והריצו:</p>
+<div class="cmd-box" id="cmd-clone">
+<span class="cmd-prefix">$ </span>git clone &lt;repo-url&gt;
+<button class="copy-btn" onclick="copyCmd('cmd-clone')">&#128203; העתק</button>
+</div>
+<div class="note">החליפו את <code style="color:#fcd34d;background:rgba(251,191,36,.12);padding:2px 6px;border-radius:4px">&lt;repo-url&gt;</code> בכתובת ה-Repo שלכם מ-GitHub. מוצאים אותה ב-GitHub בלחיצה על הכפתור הירוק "Code" → העתקת הקישור.</div>
+</div>
+
+<div class="module-card">
+<div class="module-header">
+  <div class="module-num module-num-5">&#10003;</div>
+  <div class="module-title">בדיקה</div>
+</div>
+<div class="verify-box">נוצרה תיקייה חדשה עם שם ה-Repo? מצוין – הפרויקט אצלכם על המחשב. היכנסו לתיקייה:</div>
+<div class="cmd-box" id="cmd-cd-repo">
+<span class="cmd-prefix">$ </span>cd &lt;repo-name&gt;
+<button class="copy-btn" onclick="copyCmd('cmd-cd-repo')">&#128203; העתק</button>
+</div>
+</div>
+</div>
+
+<!-- ===== MODULE 6 – npm install ===== -->
+<div class="section section-orange" id="m6">
+<div class="section-header">
+  <div class="section-icon icon-orange">&#128230;</div>
+  <h2>שלב 6: התקנת תלויות</h2>
+</div>
+<p>כל פרויקט משתמש בספריות (חבילות קוד) שאחרים כתבו. הפקודה <strong>npm install</strong> מורידה את כל הספריות שהפרויקט צריך.</p>
+
+<div class="module-card">
+<div class="module-header">
+  <div class="module-num module-num-6">6</div>
+  <div class="module-title">התקנה</div>
+</div>
+<p class="module-desc">ודאו שאתם בתוך תיקיית הפרויקט, והריצו:</p>
+<div class="cmd-box" id="cmd-npm-install">
+<span class="cmd-prefix">$ </span>npm install
+<button class="copy-btn" onclick="copyCmd('cmd-npm-install')">&#128203; העתק</button>
+</div>
+<div class="note">הפקודה קוראת את קובץ <code style="color:#fcd34d;background:rgba(251,191,36,.12);padding:2px 6px;border-radius:4px">package.json</code> שבפרויקט ומורידה את כל מה שצריך. זה יכול לקחת כדקה.</div>
+<div class="verify-box">נוצרה תיקייה בשם <code style="color:#6ee7b7;background:rgba(52,211,153,.12);padding:2px 6px;border-radius:4px">node_modules</code> בתוך הפרויקט? הכל הותקן בהצלחה.</div>
+</div>
+</div>
+
+<!-- ===== MODULE 7 – Run locally ===== -->
+<div class="section section-teal" id="m7">
+<div class="section-header">
+  <div class="section-icon icon-teal">&#9654;&#65039;</div>
+  <h2>שלב 7: הרצה מקומית</h2>
+</div>
+<p>הרגע הגדול – נריץ את הפרויקט על המחשב שלכם ונראה אותו בדפדפן!</p>
+
+<div class="module-card">
+<div class="module-header">
+  <div class="module-num module-num-7">7</div>
+  <div class="module-title">הרצת שרת פיתוח</div>
+</div>
+<p class="module-desc">מתוך תיקיית הפרויקט, הריצו:</p>
+<div class="cmd-box" id="cmd-npm-dev">
+<span class="cmd-prefix">$ </span>npm run dev
+<button class="copy-btn" onclick="copyCmd('cmd-npm-dev')">&#128203; העתק</button>
+</div>
+</div>
+
+<div class="module-card">
+<div class="module-header">
+  <div class="module-num module-num-7">&#10003;</div>
+  <div class="module-title">בדיקה</div>
+</div>
+<p class="module-desc">בטרמינל יופיע כתובת מקומית, בדרך כלל:</p>
+<div class="cmd-box" id="cmd-local-url" style="color:#2dd4bf">
+http://localhost:5173
+<button class="copy-btn" onclick="copyCmd('cmd-local-url')">&#128203; העתק</button>
+</div>
+<div class="verify-box">פתחו את הכתובת בדפדפן. אם הפרויקט נטען ואתם רואים את הממשק – הכל עובד מושלם!</div>
+<div class="note">הפורט (5173) עשוי להשתנות. תמיד השתמשו בכתובת שמופיעה בטרמינל שלכם.</div>
+</div>
+</div>
+
+<!-- ===== SECTION: בדיקות תקינות ===== -->
+<div class="section section-indigo" id="s-verify">
+<div class="section-header">
+  <div class="section-icon icon-indigo">&#128269;</div>
+  <h2>בדיקות תקינות כלליות</h2>
+</div>
+<p>הריצו את כל הפקודות ברצף כדי לוודא שהכל מותקן כראוי:</p>
+
+<div class="cmd-box" id="cmd-all-check">
+<span class="cmd-prefix">$ </span>git --version
+<br><span class="cmd-prefix">$ </span>node --version
+<br><span class="cmd-prefix">$ </span>npm --version
+<br><span class="cmd-prefix">$ </span>claude --version
+<button class="copy-btn" onclick="copyCmd('cmd-all-check')">&#128203; העתק</button>
+</div>
+
+<div class="verify-box">כל ארבע הפקודות מחזירות מספר גרסה? מעולה – סביבת העבודה מוכנה לחלוטין.</div>
+
+<details>
+<summary>&#128203; רשימת בדיקה מסודרת</summary>
+<div class="details-body">
+<ul>
+<li><strong>Git</strong> – מחזיר גרסה ✓</li>
+<li><strong>Node.js</strong> – מחזיר גרסה (LTS מומלץ) ✓</li>
+<li><strong>npm</strong> – מחזיר גרסה ✓</li>
+<li><strong>Claude Code</strong> – מחזיר גרסה ✓</li>
+<li><strong>פרויקט משוכפל</strong> – תיקייה קיימת ✓</li>
+<li><strong>node_modules</strong> – נוצרה אחרי npm install ✓</li>
+<li><strong>npm run dev</strong> – השרת עולה + הדף נטען בדפדפן ✓</li>
+</ul>
+</div>
+</details>
+</div>
+
+<!-- ===== SECTION: תקלות נפוצות ===== -->
+<div class="section section-red" id="s-trouble">
+<div class="section-header">
+  <div class="section-icon icon-red">&#128295;</div>
+  <h2>תקלות נפוצות</h2>
+</div>
+
+<div class="trouble-item">
+<div class="trouble-num">1</div>
+<div class="trouble-body">
+  <div class="trouble-problem">'npm' is not recognized / command not found</div>
+  <div class="trouble-fix">Node.js לא מותקן, או שהטרמינל לא זיהה את ההתקנה. <strong>פתרון:</strong> ודאו ש-Node.js מותקן (ראו שלב 2), סגרו את הטרמינל לחלוטין ופתחו מחדש. אם עדיין לא עובד – הפעילו מחדש את המחשב.</div>
+</div>
+</div>
+
+<div class="trouble-item">
+<div class="trouble-num">2</div>
+<div class="trouble-body">
+  <div class="trouble-problem">EACCES / Permission Error (שגיאת הרשאות)</div>
+  <div class="trouble-fix"><strong>Windows:</strong> פתחו את הטרמינל כמנהל מערכת (קליק ימני → Run as administrator).<br><strong>Mac:</strong> הוסיפו <code style="color:#fca5a5;background:rgba(248,113,113,.12);padding:2px 6px;border-radius:4px">sudo</code> לפני הפקודה ותזינו את סיסמת המחשב.</div>
+</div>
+</div>
+
+<div class="trouble-item">
+<div class="trouble-num">3</div>
+<div class="trouble-body">
+  <div class="trouble-problem">Port already in use / EADDRINUSE (הפורט תפוס)</div>
+  <div class="trouble-fix">יש תהליך אחר שכבר משתמש בפורט. <strong>פתרון:</strong> סגרו טרמינלים ישנים שרצים (Ctrl+C עוצר שרת), או שנו פורט ידנית: <code style="color:#fca5a5;background:rgba(248,113,113,.12);padding:2px 6px;border-radius:4px">npm run dev -- --port 3001</code></div>
+</div>
+</div>
+
+<div class="trouble-item">
+<div class="trouble-num">4</div>
+<div class="trouble-body">
+  <div class="trouble-problem">Node version mismatch / engine error (גרסת Node לא מתאימה)</div>
+  <div class="trouble-fix">הפרויקט דורש גרסת Node מסוימת. <strong>פתרון:</strong> התקינו את גרסת LTS העדכנית מ-<strong>nodejs.org</strong>. בדקו עם <code style="color:#fca5a5;background:rgba(248,113,113,.12);padding:2px 6px;border-radius:4px">node --version</code> שאתם על גרסה 18 ומעלה.</div>
+</div>
+</div>
+</div>
+
+<!-- ===== SECTION: מצב בסיום ===== -->
+<div class="checklist" id="s-done">
+<h2>&#127937; מצב בסיום הפרק</h2>
+<ul>
+  <li>Git מותקן ועובד</li>
+  <li>Node.js + npm מותקנים (גרסת LTS)</li>
+  <li>Claude Code CLI מותקן וזמין מהטרמינל</li>
+  <li>Anti Gravity מחובר ל-GitHub</li>
+  <li>הפרויקט משוכפל (Clone) למחשב</li>
+  <li>התלויות הותקנו (npm install)</li>
+  <li>הפרויקט רץ מקומית ונפתח בדפדפן</li>
+</ul>
+</div>
+
+</div><!-- /page-wrapper -->
+
+<footer>
+<div class="footer-line">&copy; הקורס שלנו – פרק התקנת סביבה</div>
+</footer>
+
+<script>
+function copyCmd(id){
+  var el=document.getElementById(id);
+  if(!el)return;
+  var text=el.cloneNode(true);
+  var btn=text.querySelector('.copy-btn');
+  if(btn)btn.remove();
+  var prefixes=text.querySelectorAll('.cmd-prefix');
+  prefixes.forEach(function(p){p.remove()});
+  var str=text.textContent.trim().replace(/\n\s*/g,'\n');
+  navigator.clipboard.writeText(str).then(function(){
+    var b=el.querySelector('.copy-btn');
+    if(b){var orig=b.innerHTML;b.textContent='\u2705 \u05d4\u05d5\u05e2\u05ea\u05e7!';setTimeout(function(){b.innerHTML=orig},1500)}
+  }).catch(function(){
+    var ta=document.createElement('textarea');
+    ta.value=str;ta.style.position='fixed';ta.style.opacity='0';
+    document.body.appendChild(ta);ta.select();
+    try{document.execCommand('copy');var b=el.querySelector('.copy-btn');if(b){b.textContent='\u2705 \u05d4\u05d5\u05e2\u05ea\u05e7!';setTimeout(function(){b.textContent='\ud83d\udccb \u05d4\u05e2\u05ea\u05e7'},1500)}}catch(e){}
+    document.body.removeChild(ta);
+  });
+}
+function switchTab(tabEl,tabId,group){
+  var tabs=document.querySelectorAll('.os-tabs[data-group="'+group+'"] .os-tab');
+  tabs.forEach(function(t){t.classList.remove('active')});
+  tabEl.classList.add('active');
+  var contents=document.querySelectorAll('.os-content[data-group="'+group+'"]');
+  contents.forEach(function(c){c.classList.remove('active');if(c.dataset.tab===tabId)c.classList.add('active')});
+}
+window.addEventListener('scroll',function(){
+  var h=document.documentElement;
+  var pct=(h.scrollTop||document.body.scrollTop)/((h.scrollHeight||document.body.scrollHeight)-h.clientHeight)*100;
+  document.getElementById('progressFill').style.width=Math.min(pct,100)+'%';
+});
+</script>
+
+</body>
+</html>
