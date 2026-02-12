@@ -157,26 +157,33 @@ strong{color:var(--text)}
 
 /* ── Command Box ── */
 .cmd-box{
-  position:relative;border-radius:var(--radius-sm);padding:14px 18px;padding-left:70px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  border-radius:var(--radius-sm);padding:12px 16px;min-height:44px;
   margin:10px 0;font-family:"Cascadia Code",Consolas,"Courier New",monospace;
-  font-size:.9rem;line-height:1.6;direction:ltr;text-align:left;
+  font-size:.9rem;line-height:1.7;direction:ltr;text-align:left;
   background:var(--bg2);border:1px solid var(--border);color:#a5b4fc;
+  word-break:break-word;overflow-wrap:anywhere;
 }
+.cmd-box .cmd-text{flex:1;overflow-x:auto;white-space:nowrap;direction:ltr;text-align:left}
 .cmd-box .cmd-prefix{color:var(--muted);user-select:none}
 .cmd-box .copy-btn{
-  position:absolute;top:50%;left:12px;transform:translateY(-50%);
+  flex-shrink:0;
   background:linear-gradient(135deg,var(--accent),var(--accent2));
-  border:none;border-radius:8px;padding:5px 12px;font-size:.78rem;
+  border:none;border-radius:8px;padding:6px 14px;font-size:.78rem;
   cursor:pointer;color:#fff;transition:.2s;font-weight:600;
-  box-shadow:0 2px 8px rgba(129,140,248,.25);
+  box-shadow:0 2px 8px rgba(129,140,248,.25);white-space:nowrap;
 }
-.cmd-box .copy-btn:hover{transform:translateY(-50%) scale(1.05);box-shadow:0 4px 14px rgba(129,140,248,.35)}
+.cmd-box .copy-btn:hover{transform:scale(1.05);box-shadow:0 4px 14px rgba(129,140,248,.35)}
+/* Multi-line cmd boxes */
+.cmd-box.cmd-multi{flex-direction:row;flex-wrap:wrap;white-space:normal}
+.cmd-box.cmd-multi .cmd-text{white-space:normal;overflow-x:visible}
 
 /* ── Verify Box ── */
 .verify-box{
   background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);
-  border-radius:var(--radius-sm);padding:12px 18px;margin:10px 0;
+  border-radius:var(--radius-sm);padding:14px 18px;margin:10px 0;
   display:flex;align-items:flex-start;gap:10px;font-size:.9rem;color:#6ee7b7;
+  word-break:break-word;overflow-wrap:anywhere;line-height:1.7;
 }
 .verify-box::before{content:"✓";font-weight:700;font-size:1rem;flex-shrink:0;margin-top:1px}
 
@@ -185,6 +192,7 @@ strong{color:var(--text)}
   background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.2);
   border-radius:var(--radius-sm);padding:14px 18px;font-size:.9rem;
   margin:10px 0;color:#fcd34d;display:flex;align-items:flex-start;gap:10px;
+  word-break:break-word;overflow-wrap:anywhere;line-height:1.7;
 }
 .note::before{content:"💡";font-size:1rem;flex-shrink:0}
 
@@ -193,6 +201,7 @@ strong{color:var(--text)}
   background:rgba(96,165,250,.08);border:1px solid rgba(96,165,250,.2);
   border-radius:var(--radius-sm);padding:14px 18px;font-size:.9rem;
   margin:10px 0;color:#93c5fd;display:flex;align-items:flex-start;gap:10px;
+  word-break:break-word;overflow-wrap:anywhere;line-height:1.7;
 }
 .info-box::before{content:"ℹ️";font-size:1rem;flex-shrink:0}
 
@@ -210,9 +219,10 @@ strong{color:var(--text)}
 .trouble-body{flex:1}
 .trouble-problem{font-weight:700;color:var(--text);margin-bottom:6px;font-size:.95rem}
 .trouble-fix{
-  font-size:.9rem;color:var(--text-secondary);line-height:1.5;
-  background:var(--bg2);border-radius:6px;padding:10px 14px;
+  font-size:.9rem;color:var(--text-secondary);line-height:1.7;
+  background:var(--bg2);border-radius:6px;padding:12px 16px;
   border-right:3px solid var(--green);
+  word-break:break-word;overflow-wrap:anywhere;
 }
 
 /* ── Checklist ── */
@@ -324,7 +334,7 @@ footer .footer-line{display:inline-block;padding:8px 20px;background:var(--surfa
 </div>
 <p class="module-desc">פתחו טרמינל (Command Prompt ב-Windows, Terminal ב-Mac) והריצו:</p>
 <div class="cmd-box" id="cmd-git-check">
-<span class="cmd-prefix">$ </span>git --version
+<span class="cmd-text"><span class="cmd-prefix">$ </span>git --version</span>
 <button class="copy-btn" onclick="copyCmd('cmd-git-check')">&#128203; העתק</button>
 </div>
 <div class="verify-box">אם מופיע מספר גרסה (כמו <code style="color:#a5b4fc;background:rgba(129,140,248,.15);padding:2px 6px;border-radius:4px">git version 2.43.0</code>) – Git מותקן ואפשר לעבור לשלב הבא.</div>
@@ -410,11 +420,11 @@ footer .footer-line{display:inline-block;padding:8px 20px;background:var(--surfa
 </div>
 <p class="module-desc">הריצו את שתי הפקודות הבאות:</p>
 <div class="cmd-box" id="cmd-node-v">
-<span class="cmd-prefix">$ </span>node --version
+<span class="cmd-text"><span class="cmd-prefix">$ </span>node --version</span>
 <button class="copy-btn" onclick="copyCmd('cmd-node-v')">&#128203; העתק</button>
 </div>
 <div class="cmd-box" id="cmd-npm-v">
-<span class="cmd-prefix">$ </span>npm --version
+<span class="cmd-text"><span class="cmd-prefix">$ </span>npm --version</span>
 <button class="copy-btn" onclick="copyCmd('cmd-npm-v')">&#128203; העתק</button>
 </div>
 <div class="verify-box">אם מופיעים שני מספרי גרסה – הכל מותקן כמו שצריך.</div>
@@ -604,11 +614,10 @@ http://localhost:5173
 </div>
 <p>הריצו את כל הפקודות ברצף כדי לוודא שהכל מותקן כראוי:</p>
 
-<div class="cmd-box" id="cmd-all-check">
-<span class="cmd-prefix">$ </span>git --version
+<div class="cmd-box cmd-multi" id="cmd-all-check"><span class="cmd-text"><span class="cmd-prefix">$ </span>git --version
 <br><span class="cmd-prefix">$ </span>node --version
 <br><span class="cmd-prefix">$ </span>npm --version
-<br><span class="cmd-prefix">$ </span>claude --version
+<br><span class="cmd-prefix">$ </span>claude --version</span>
 <button class="copy-btn" onclick="copyCmd('cmd-all-check')">&#128203; העתק</button>
 </div>
 
